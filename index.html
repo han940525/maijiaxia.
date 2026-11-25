@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff8ec">
+<meta name="description" content="袂甲啥：高雄、屏東美食隨機推薦，幫你決定今天吃什麼！">
+<title>袂甲啥｜今天吃什麼？</title>
+
+<style>
+/* ==================================================
+   一、整體樣式
+================================================== */
+
+:root {
+    --bg: #fff8ec;
+    --dark: #594a3c;
+    --accent: #d98b5f;
+    --green: #789b78;
+    --light: #f4e5d2;
+    --white: #ffffff;
+    --muted: #8b7765;
+    --border: #eadbc9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--dark);
+    font-family:
+        "Microsoft JhengHei",
+        "Noto Sans TC",
+        Arial,
+        sans-serif;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: min(100% - 28px, 1050px);
+    margin: 0 auto;
+    padding-bottom: 35px;
+}
+
+/* ==================================================
+   二、標題
+================================================== */
+
+header {
+    text-align: center;
+    padding: 30px 10px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(34px, 6vw, 52px);
+    color: var(--dark);
+    letter-spacing: 5px;
+}
+
+header p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+/* ==================================================
+   三、區塊卡片
+================================================== */
+
+.section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 12px rgba(90, 65, 40, 0.04);
+}
+
+.section h2 {
+    font-size: 19px;
+    margin: 0 0 14px;
+    color: var(--dark);
+}
+
+.section-description {
+    font-size: 13px;
+    color: var(--muted);
+    margin: -5px 0 13px;
+    line-height: 1.7;
+}
+
+/* ==================================================
+   四、選項與按鈕
+================================================== */
+
+.radio-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-bottom: 15px;
+}
+
+.radio-list label,
+.check-grid label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--accent);
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+
+.city-select {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.city-select button {
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 9px 20px;
+    background: var(--white);
+    color: var(--dark);
+}
+
+.city-select button.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.city-select button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.check-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px 8px;
+}
+
+.check-grid label {
+    min-width: 0;
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.btn {
+    border: none;
+    border-radius: 9px;
+    padding: 10px 17px;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.btn:hover {
+    filter: brightness(.95);
+    transform: translateY(-1px);
+}
+
+.btn-light {
+    background: var(--light);
+    color: var(--dark);
+}
+
+.btn-orange {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-green {
+    background: var(--green);
+    color: white;
+}
+
+.btn-red {
+    background: #e8b7a1;
+    color: var(--dark);
+}
+
+.btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ==================================================
+   五、預算
+================================================== */
+
+.budget-area {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.budget-area input {
+    width: 150px;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline-color: var(--accent);
+}
+
+/* ==================================================
+   六、推薦結果
+================================================== */
+
+.result {
+    text-align: center;
+    background: #fffaf4;
+    border: 2px dashed #e6c5a8;
+    border-radius: 14px;
+    padding: 25px 15px;
+    margin-top: 8px;
+}
+
+.result-location {
+    color: var(--green);
+    font-size: 15px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+.result-name {
+    color: var(--accent);
+    font-size: clamp(30px, 6vw, 42px);
+    font-weight: bold;
+    margin: 18px 0;
+    overflow-wrap: anywhere;
+}
+
+.result-info {
+    margin: 9px 0;
+    line-height: 1.7;
+}
+
+.result-price {
+    color: #b45e3d;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.result-description {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.main-button {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* ==================================================
+   七、收藏清單
+================================================== */
+
+.favorite-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.favorite-item {
+    border: 1px solid var(--border);
+    background: #fffaf4;
+    border-radius: 10px;
+    padding: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.favorite-details {
+    min-width: 0;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.favorite-name {
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.favorite-meta {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.favorite-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.favorite-actions button {
+    padding: 7px 10px;
+    font-size: 12px;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 20px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+footer {
+    text-align: center;
+    color: #9b8978;
+    font-size: 12px;
+    line-height: 1.8;
+    padding: 15px;
+}
+
+/* ==================================================
+   八、手機版
+================================================== */
+
+@media (max-width: 650px) {
+
+    .container {
+        width: min(100% - 18px, 1050px);
+    }
+
+    header {
+        padding-top: 22px;
+    }
+
+    .section {
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .check-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px 5px;
+    }
+
+    .check-grid label {
+        font-size: 12px;
+    }
+
+    .favorite-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .favorite-actions {
+        width: 100%;
+    }
+
+    .favorite-actions button {
+        flex: 1;
+    }
+
+    .budget-area input {
+        width: 100%;
+    }
+
+    .btn {
+        padding: 9px 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .check-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>袂甲啥</h1>
+    <p>今天不知道吃什麼？讓命運幫你決定！</p>
+</header>
+
+<!-- ==================================================
+     ① 選擇城市
+================================================== -->
+
+<section class="section">
+    <h2>① 選擇城市</h2>
+
+    <div class="radio-list">
+        <label>
+            <input type="radio" name="cityMode"
+                   value="manual" checked>
+            自選城市
+        </label>
+
+        <label>
+            <input type="radio" name="cityMode"
+                   value="random">
+            隨機城市（城市及行政區一起隨機）
+        </label>
+    </div>
+
+    <div class="city-select">
+        <span>選擇城市：</span>
+
+        <button id="kaohsiungBtn"
+                class="active"
+                type="button"
+                onclick="setCity('高雄市')">
+            高雄市
+        </button>
+
+        <button id="pingtungBtn"
+                type="button"
+                onclick="setCity('屏東縣')">
+            屏東縣
+        </button>
+    </div>
+</section>
+
+
+<!-- ==================================================
+     ② 選擇行政區
+================================================== -->
+
+<section class="section">
+    <h2>② 選擇行政區</h2>
+
+    <p class="section-description" id="districtDescription">
+        可複選行政區；不選或全選時，顯示為（全行政區）。
+    </p>
+
+    <div class="check-grid" id="districtGrid"></div>
+
+    <div class="button-row">
+        <button class="btn btn-light"
+                type="button"
+                onclick="selectAllDistricts()">
+            全選行政區
+        </button>
+
+        <button class="btn btn-light"
+                type="button"
+                onclick="clearDistricts()">
+            清除行政區
+        </button>
+
+        <label style="display:flex;align-items:center;gap:7px;margin-left:8px;">
+            <input type="checkbox" id="randomDistrict">
+            <strong style="color:#b45e3d;">隨機行政區</strong>
+        </label>
+    </div>
+</section>
+
+
+<!-- ==================================================
+     ③ 選擇餐點類型
+================================================== -->
+
+<section class="section">
+    <h2>③ 選擇餐點類型（可複選）</h2>
+
+    <div class="check-grid" id="categoryGrid"></div>
+
+    <div class="button-row">
+        <button class="btn btn-light"
+                type="button"
+                onclick="selectAllCategories()">
+            全選類型
+        </button>
+
+        <button class="btn btn-light"
+                type="button"
+                onclick="clearCategories()">
+            清除類型
+        </button>
+    </div>
+</section>
+
+
+<!-- ==================================================
+     ④ 設定預算
+================================================== -->
+
+<section class="section">
+    <h2>④ 設定預算</h2>
+
+    <div class="budget-area">
+        <label for="budget">每人最高預算（元）：</label>
+
+        <input id="budget"
+               type="number"
+               min="0"
+               step="1"
+               value="150"
+               placeholder="例如：150">
+
+        <span class="section-description" style="margin:0;">
+            留白代表不限預算
+        </span>
+    </div>
+</section>
+
+
+<!-- ==================================================
+     ⑤ 今日推薦
+================================================== -->
+
+<section class="section">
+    <h2>⑤ 今日美食推薦</h2>
+
+    <div class="result">
+        <div class="result-location" id="resultLocation">
+            推薦地區：尚未抽選
+        </div>
+
+        <div class="result-name" id="resultName">
+            今天要吃什麼？
+        </div>
+
+        <div class="result-info" id="resultCategory">
+            餐點類型：尚未推薦
+        </div>
+
+        <div class="result-price" id="resultPrice">
+            參考價格：--
+        </div>
+
+        <div class="result-description" id="resultDescription">
+            按下隨機推薦，讓命運幫你決定！
+        </div>
+    </div>
+
+    <button class="btn btn-orange main-button"
+            type="button"
+            onclick="recommendFood()">
+        🎲 隨機推薦
+    </button>
+
+    <div class="button-row">
+        <button class="btn btn-green"
+                type="button"
+                onclick="searchGoogleMaps()">
+            📍 搜尋 Google 地圖
+        </button>
+
+        <button class="btn btn-light"
+                type="button"
+                onclick="addFavorite()">
+            ⭐ 收藏這道餐點
+        </button>
+    </div>
+</section>
+
+
+<!-- ==================================================
+     ⑥ 我的收藏
+================================================== -->
+
+<section class="section">
+    <h2>⑥ 我的收藏</h2>
+
+    <p class="section-description">
+        收藏資料只保存在目前使用的瀏覽器中。
+    </p>
+
+    <div id="favoriteList" class="favorite-list">
+    </div>
+</section>
+
+
+<!-- ==================================================
+     ⑦ 重置
+================================================== -->
+
+<section class="section">
+    <button class="btn btn-light"
+            type="button"
+            style="width:100%;"
+            onclick="resetDrawHistory()">
+        重置抽選紀錄
+    </button>
+</section>
+
+
+<footer>
+    袂甲啥｜高雄、屏東美食推薦<br>
+    價格為2025～2026年參考估價，實際價格依店家公告為準。<br>
+    本網站提供餐點類型推薦，不代表即時店家營業資訊。
+</footer>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   一、城市與行政區資料
+================================================== */
+
+const CITY_DISTRICTS = {
+
+    "高雄市": [
+        "三民區", "左營區", "鼓山區", "楠梓區", "鳳山區",
+        "苓雅區", "前鎮區", "新興區", "前金區", "鹽埕區",
+        "小港區", "仁武區", "大寮區", "岡山區", "路竹區",
+        "橋頭區", "梓官區", "彌陀區", "永安區", "湖內區",
+        "茄萣區", "阿蓮區", "田寮區", "燕巢區", "旗山區",
+        "美濃區", "內門區", "杉林區", "甲仙區", "六龜區",
+        "桃源區", "那瑪夏區", "茂林區", "林園區", "鳥松區",
+        "大樹區", "旗津區", "大社區"
+    ],
+
+    "屏東縣": [
+        "屏東市", "潮州鎮", "東港鎮", "恆春鎮",
+        "萬丹鄉", "長治鄉", "麟洛鄉", "九如鄉",
+        "里港鄉", "鹽埔鄉", "高樹鄉", "萬巒鄉",
+        "內埔鄉", "竹田鄉", "新埤鄉", "枋寮鄉",
+        "新園鄉", "崁頂鄉", "林邊鄉", "南州鄉",
+        "佳冬鄉", "琉球鄉", "車城鄉", "滿州鄉",
+        "枋山鄉", "三地門鄉", "霧臺鄉", "瑪家鄉",
+        "泰武鄉", "來義鄉", "春日鄉", "獅子鄉",
+        "牡丹鄉"
+    ]
+};
+
+
+/* ==================================================
+   二、完整餐點資料
+   共11種類型，每種類型10筆
+================================================== */
+
+const FOOD_DATA = {
+
+    "早餐": [
+        ["蛋餅",35,60,"台式經典早餐"],
+        ["培根蛋吐司",45,75,"培根搭配煎蛋吐司"],
+        ["火腿蛋吐司",40,70,"簡單方便的早餐"],
+        ["鐵板麵",55,85,"早餐店常見鐵板麵"],
+        ["蘿蔔糕",35,60,"煎至表面金黃"],
+        ["飯糰",40,65,"傳統中式早餐"],
+        ["漢堡",50,90,"早餐漢堡"],
+        ["鮪魚蛋餅",45,75,"鮪魚搭配蛋餅"],
+        ["蔥抓餅",40,70,"酥脆蔥抓餅"],
+        ["鍋燒意麵",75,110,"熱湯麵食"]
+    ],
+
+    "甜點": [
+        ["豆花",45,75,"傳統豆花甜品"],
+        ["雞蛋糕",40,70,"現烤雞蛋糕"],
+        ["車輪餅",15,30,"紅豆、奶油等口味"],
+        ["可麗餅",60,120,"甜味或鹹味可麗餅"],
+        ["鬆餅",70,150,"下午茶甜點"],
+        ["布丁",35,65,"滑順焦糖布丁"],
+        ["地瓜球",30,60,"夜市常見甜點"],
+        ["冰淇淋",40,100,"各式冰淇淋"],
+        ["芋圓",55,90,"芋圓甜湯"],
+        ["舒芙蕾",100,180,"蓬鬆甜點"]
+    ],
+
+    "中式": [
+        ["滷肉飯",40,75,"台式經典飯食"],
+        ["水餃",60,110,"手工或一般水餃"],
+        ["牛肉湯",100,180,"熱湯料理"],
+        ["小籠包",80,150,"湯汁飽滿的小籠包"],
+        ["排骨飯",90,140,"排骨搭配白飯"],
+        ["雞腿飯",100,150,"炸雞腿或滷雞腿"],
+        ["炒飯",75,120,"大火快炒飯食"],
+        ["炒麵",70,110,"中式炒麵"],
+        ["肉燥飯",35,65,"台式肉燥飯"],
+        ["餛飩湯",45,85,"餛飩湯品"]
+    ],
+
+    "速食": [
+        ["炸雞套餐",120,190,"炸雞搭配配餐"],
+        ["漢堡套餐",100,180,"漢堡搭配薯條飲料"],
+        ["薯條",35,75,"經典炸薯條"],
+        ["雞塊",45,90,"酥炸雞塊"],
+        ["披薩",100,200,"披薩餐點"],
+        ["熱狗堡",60,110,"方便快速的餐點"],
+        ["炸雞腿",50,90,"單點炸雞腿"],
+        ["蛋塔",35,60,"酥皮蛋塔"],
+        ["潛艇堡",90,160,"麵包夾餡料"],
+        ["雞肉捲",70,130,"方便拿取的速食"]
+    ],
+
+    "韓式": [
+        ["韓式拌飯",120,180,"韓式拌飯料理"],
+        ["韓式炸雞",130,200,"韓式醬料炸雞"],
+        ["部隊鍋",150,220,"韓式鍋物"],
+        ["韓式泡菜鍋",130,190,"泡菜湯鍋"],
+        ["辣炒年糕",80,150,"韓國街頭小吃"],
+        ["韓式烤肉飯",130,190,"烤肉搭配白飯"],
+        ["海鮮煎餅",100,170,"韓式煎餅"],
+        ["韓式飯捲",70,130,"韓式紫菜飯捲"],
+        ["韓式豆腐鍋",130,190,"嫩豆腐鍋物"],
+        ["韓式炸醬麵",100,160,"韓式炸醬麵"]
+    ],
+
+    "泰式": [
+        ["打拋豬飯",100,160,"泰式打拋豬肉飯"],
+        ["泰式炒河粉",100,160,"泰式炒河粉"],
+        ["綠咖哩飯",120,180,"泰式綠咖哩"],
+        ["月亮蝦餅",120,200,"酥炸蝦餅"],
+        ["泰式酸辣湯",100,170,"酸辣湯品"],
+        ["泰式炒飯",90,150,"泰式風味炒飯"],
+        ["椒麻雞飯",110,170,"椒麻雞搭配白飯"],
+        ["泰式涼拌",80,140,"清爽涼拌料理"],
+        ["泰式奶茶",40,75,"泰式特色飲品"],
+        ["泰式船麵",100,160,"濃郁泰式湯麵"]
+    ],
+
+    "健康餐": [
+        ["舒肥雞胸餐",110,160,"低油脂雞胸肉"],
+        ["烤雞腿餐",120,180,"烤雞腿搭配蔬菜"],
+        ["鮭魚餐盒",140,200,"鮭魚搭配健康配菜"],
+        ["鯖魚餐盒",110,170,"鯖魚搭配蔬菜"],
+        ["牛肉健康餐",130,190,"牛肉搭配蔬菜"],
+        ["豆腐蔬食餐",90,150,"豆腐與蔬菜"],
+        ["雞肉沙拉",90,150,"雞肉搭配生菜"],
+        ["藜麥餐盒",110,170,"藜麥搭配蛋白質"],
+        ["地瓜雞肉餐",100,160,"地瓜搭配雞肉"],
+        ["日式健康餐",120,180,"日式風味餐盒"]
+    ],
+
+    "飯類": [
+        ["雞腿飯",90,150,"炸雞腿或滷雞腿飯"],
+        ["排骨飯",85,140,"排骨便當"],
+        ["控肉飯",80,130,"滷控肉搭配白飯"],
+        ["鴨肉飯",75,130,"鴨肉搭配白飯"],
+        ["咖哩飯",90,150,"日式或台式咖哩飯"],
+        ["肉燥飯",35,70,"台式肉燥飯"],
+        ["燒肉飯",90,150,"燒肉便當"],
+        ["滷雞腿飯",90,140,"滷雞腿便當"],
+        ["丼飯",100,180,"日式丼飯"],
+        ["炒飯",70,130,"各式炒飯"]
+    ],
+
+    "麵類": [
+        ["牛肉麵",130,200,"紅燒或清燉牛肉麵"],
+        ["鍋燒意麵",80,130,"鍋燒麵食"],
+        ["麻醬麵",60,100,"濃郁麻醬麵"],
+        ["乾麵",50,90,"台式乾麵"],
+        ["陽春麵",50
