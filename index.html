@@ -1,26 +1,21 @@
+
+
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#fff8ec">
-<meta name="description" content="袂甲啥：高雄、屏東美食隨機推薦，幫你決定今天吃什麼！">
 <title>袂甲啥｜今天吃什麼？</title>
 
 <style>
-/* ==================================================
-   一、整體樣式
-================================================== */
-
 :root {
-    --bg: #fff8ec;
-    --dark: #594a3c;
-    --accent: #d98b5f;
-    --green: #789b78;
-    --light: #f4e5d2;
-    --white: #ffffff;
-    --muted: #8b7765;
-    --border: #eadbc9;
+    --bg: #FFF8EC;
+    --dark: #594A3C;
+    --accent: #D98B5F;
+    --green: #789B78;
+    --light: #F4E5D2;
+    --white: #FFFFFF;
 }
 
 * {
@@ -29,160 +24,66 @@
 
 body {
     margin: 0;
+    padding: 20px;
     background: var(--bg);
     color: var(--dark);
-    font-family:
-        "Microsoft JhengHei",
-        "Noto Sans TC",
-        Arial,
-        sans-serif;
-}
-
-button, input {
-    font: inherit;
-}
-
-button {
-    cursor: pointer;
+    font-family: "Microsoft JhengHei", sans-serif;
 }
 
 .container {
-    width: min(100% - 28px, 1050px);
-    margin: 0 auto;
-    padding-bottom: 35px;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
 }
-
-/* ==================================================
-   二、標題
-================================================== */
 
 header {
     text-align: center;
-    padding: 30px 10px 20px;
+    margin-bottom: 20px;
 }
 
 header h1 {
-    margin: 0;
-    font-size: clamp(34px, 6vw, 52px);
-    color: var(--dark);
-    letter-spacing: 5px;
+    font-size: 36px;
+    margin-bottom: 5px;
 }
 
 header p {
-    color: var(--muted);
-    font-size: 15px;
-    margin-top: 8px;
+    color: #8B7765;
 }
 
-/* ==================================================
-   三、區塊卡片
-================================================== */
-
-.section {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px;
+section {
+    border: 1px solid #DCC9B5;
+    border-radius: 15px;
+    padding: 18px;
     margin-bottom: 15px;
-    box-shadow: 0 3px 12px rgba(90, 65, 40, 0.04);
+    background: rgba(255,255,255,0.25);
 }
 
-.section h2 {
-    font-size: 19px;
-    margin: 0 0 14px;
-    color: var(--dark);
+h2 {
+    font-size: 18px;
+    margin-top: 0;
 }
 
-.section-description {
-    font-size: 13px;
-    color: var(--muted);
-    margin: -5px 0 13px;
-    line-height: 1.7;
-}
-
-/* ==================================================
-   四、選項與按鈕
-================================================== */
-
-.radio-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px 24px;
-    margin-bottom: 15px;
-}
-
-.radio-list label,
-.check-grid label {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-    accent-color: var(--accent);
-    width: 17px;
-    height: 17px;
+label {
     cursor: pointer;
 }
 
-.city-select {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 10px 0;
-}
-
-.city-select button {
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    padding: 9px 20px;
-    background: var(--white);
-    color: var(--dark);
-}
-
-.city-select button.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-}
-
-.city-select button:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-}
-
-.check-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px 8px;
-}
-
-.check-grid label {
-    min-width: 0;
-}
-
-.button-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.btn {
+button {
     border: none;
-    border-radius: 9px;
-    padding: 10px 17px;
-    font-size: 14px;
-    transition: .2s;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.2s;
 }
 
-.btn:hover {
-    filter: brightness(.95);
+button:hover {
+    opacity: 0.8;
     transform: translateY(-1px);
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 .btn-light {
@@ -190,217 +91,162 @@ input[type="radio"] {
     color: var(--dark);
 }
 
-.btn-orange {
-    background: var(--accent);
-    color: white;
-}
-
 .btn-green {
     background: var(--green);
     color: white;
 }
 
-.btn-red {
-    background: #e8b7a1;
+.btn-orange {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-danger {
+    background: #E8B7A1;
     color: var(--dark);
 }
 
-.btn:disabled {
-    opacity: .5;
-    cursor: not-allowed;
-    transform: none;
+.city-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 12px;
 }
 
-/* ==================================================
-   五、預算
-================================================== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
 
-.budget-area {
+.grid label {
+    padding: 6px;
+    border-radius: 5px;
+    background: rgba(244,229,210,0.5);
+}
+
+.grid label:hover {
+    background: var(--light);
+}
+
+.description {
+    color: #8B7765;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.button-group {
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
 }
 
-.budget-area input {
+input[type="number"] {
     width: 150px;
-    max-width: 100%;
     padding: 10px;
-    border: 1px solid var(--border);
+    border: 1px solid #DCC9B5;
     border-radius: 8px;
-    outline-color: var(--accent);
+    font-size: 16px;
 }
-
-/* ==================================================
-   六、推薦結果
-================================================== */
 
 .result {
     text-align: center;
-    background: #fffaf4;
-    border: 2px dashed #e6c5a8;
-    border-radius: 14px;
-    padding: 25px 15px;
-    margin-top: 8px;
+    padding: 25px 10px;
 }
 
 .result-location {
     color: var(--green);
-    font-size: 15px;
     font-weight: bold;
-    overflow-wrap: anywhere;
+    font-size: 17px;
+    word-break: break-word;
 }
 
 .result-name {
     color: var(--accent);
-    font-size: clamp(30px, 6vw, 42px);
+    font-size: clamp(24px, 5vw, 40px);
     font-weight: bold;
-    margin: 18px 0;
-    overflow-wrap: anywhere;
+    margin: 20px 0;
+    word-break: break-word;
 }
 
 .result-info {
-    margin: 9px 0;
-    line-height: 1.7;
+    margin: 8px;
 }
 
-.result-price {
-    color: #b45e3d;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.result-description {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-.main-button {
+.main-buttons button {
     display: block;
     width: 100%;
-    padding: 16px;
-    font-size: 19px;
-    font-weight: bold;
-    margin-top: 15px;
+    margin: 8px 0;
+    padding: 14px;
+    font-size: 16px;
 }
-
-/* ==================================================
-   七、收藏清單
-================================================== */
 
 .favorite-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .favorite-item {
-    border: 1px solid var(--border);
-    background: #fffaf4;
+    background: white;
     border-radius: 10px;
-    padding: 13px;
+    padding: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.favorite-details {
-    min-width: 0;
-    line-height: 1.7;
-    overflow-wrap: anywhere;
-}
-
-.favorite-name {
-    font-weight: bold;
-    color: var(--dark);
-}
-
-.favorite-meta {
-    font-size: 13px;
-    color: var(--muted);
+.favorite-info {
+    flex: 1;
+    min-width: 180px;
+    word-break: break-word;
 }
 
 .favorite-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    flex-shrink: 0;
-}
-
-.favorite-actions button {
-    padding: 7px 10px;
-    font-size: 12px;
-}
-
-.empty-message {
-    text-align: center;
-    padding: 20px;
-    color: var(--muted);
-    font-size: 14px;
 }
 
 footer {
     text-align: center;
-    color: #9b8978;
+    color: #9B8978;
     font-size: 12px;
-    line-height: 1.8;
     padding: 15px;
 }
 
-/* ==================================================
-   八、手機版
-================================================== */
-
-@media (max-width: 650px) {
-
-    .container {
-        width: min(100% - 18px, 1050px);
+@media (max-width: 700px) {
+    body {
+        padding: 10px;
     }
 
-    header {
-        padding-top: 22px;
+    header h1 {
+        font-size: 28px;
     }
 
-    .section {
-        padding: 15px;
-        border-radius: 12px;
+    section {
+        padding: 12px;
     }
 
-    .check-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px 5px;
-    }
-
-    .check-grid label {
-        font-size: 12px;
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .favorite-item {
         flex-direction: column;
-        align-items: stretch;
-    }
-
-    .favorite-actions {
-        width: 100%;
+        align-items: flex-start;
     }
 
     .favorite-actions button {
-        flex: 1;
-    }
-
-    .budget-area input {
-        width: 100%;
-    }
-
-    .btn {
-        padding: 9px 12px;
+        margin-left: 0;
     }
 }
 
 @media (max-width: 380px) {
-    .check-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -415,227 +261,155 @@ footer {
     <p>今天不知道吃什麼？讓命運幫你決定！</p>
 </header>
 
-<!-- ==================================================
-     ① 選擇城市
-================================================== -->
+<!-- ① 城市 -->
+<section>
+<h2>① 選擇城市</h2>
 
-<section class="section">
-    <h2>① 選擇城市</h2>
+<div class="city-options">
+    <label>
+        <input type="radio" name="cityMode" value="manual" checked>
+        自選城市
+    </label>
 
-    <div class="radio-list">
-        <label>
-            <input type="radio" name="cityMode"
-                   value="manual" checked>
-            自選城市
-        </label>
+    <label>
+        <input type="radio" name="cityMode" value="random">
+        隨機城市（城市及行政區一起隨機）
+    </label>
+</div>
 
-        <label>
-            <input type="radio" name="cityMode"
-                   value="random">
-            隨機城市（城市及行政區一起隨機）
-        </label>
-    </div>
+<div id="citySelect">
+    <label>
+        <input type="radio" name="city" value="高雄市" checked>
+        高雄市
+    </label>
 
-    <div class="city-select">
-        <span>選擇城市：</span>
-
-        <button id="kaohsiungBtn"
-                class="active"
-                type="button"
-                onclick="setCity('高雄市')">
-            高雄市
-        </button>
-
-        <button id="pingtungBtn"
-                type="button"
-                onclick="setCity('屏東縣')">
-            屏東縣
-        </button>
-    </div>
+    <label style="margin-left:15px">
+        <input type="radio" name="city" value="屏東縣">
+        屏東縣
+    </label>
+</div>
 </section>
 
+<!-- ② 行政區 -->
+<section>
+<h2>② 選擇行政區</h2>
 
-<!-- ==================================================
-     ② 選擇行政區
-================================================== -->
+<p class="description" id="districtDescription">
+可複選行政區；不選或全選時，顯示為全行政區。
+</p>
 
-<section class="section">
-    <h2>② 選擇行政區</h2>
+<div id="districtGrid" class="grid"></div>
 
-    <p class="section-description" id="districtDescription">
-        可複選行政區；不選或全選時，顯示為（全行政區）。
-    </p>
+<div class="button-group">
+    <button class="btn-light" onclick="selectAllDistricts()">全選行政區</button>
+    <button class="btn-light" onclick="clearDistricts()">清除行政區</button>
 
-    <div class="check-grid" id="districtGrid"></div>
-
-    <div class="button-row">
-        <button class="btn btn-light"
-                type="button"
-                onclick="selectAllDistricts()">
-            全選行政區
-        </button>
-
-        <button class="btn btn-light"
-                type="button"
-                onclick="clearDistricts()">
-            清除行政區
-        </button>
-
-        <label style="display:flex;align-items:center;gap:7px;margin-left:8px;">
-            <input type="checkbox" id="randomDistrict">
-            <strong style="color:#b45e3d;">隨機行政區</strong>
-        </label>
-    </div>
+    <label style="margin-left:10px">
+        <input type="checkbox" id="randomDistrict">
+        隨機行政區
+    </label>
+</div>
 </section>
 
+<!-- ③ 餐點類型 -->
+<section>
+<h2>③ 選擇餐點類型（可複選）</h2>
 
-<!-- ==================================================
-     ③ 選擇餐點類型
-================================================== -->
+<div id="categoryGrid" class="grid"></div>
 
-<section class="section">
-    <h2>③ 選擇餐點類型（可複選）</h2>
-
-    <div class="check-grid" id="categoryGrid"></div>
-
-    <div class="button-row">
-        <button class="btn btn-light"
-                type="button"
-                onclick="selectAllCategories()">
-            全選類型
-        </button>
-
-        <button class="btn btn-light"
-                type="button"
-                onclick="clearCategories()">
-            清除類型
-        </button>
-    </div>
+<div class="button-group">
+    <button class="btn-light" onclick="selectAllCategories()">全選類型</button>
+    <button class="btn-light" onclick="clearCategories()">清除類型</button>
+</div>
 </section>
 
+<!-- ④ 預算 -->
+<section>
+<h2>④ 設定預算</h2>
 
-<!-- ==================================================
-     ④ 設定預算
-================================================== -->
+<label for="budget">每人最高預算（元）：</label>
 
-<section class="section">
-    <h2>④ 設定預算</h2>
+<input type="number" id="budget" min="0" placeholder="150" value="150">
 
-    <div class="budget-area">
-        <label for="budget">每人最高預算（元）：</label>
-
-        <input id="budget"
-               type="number"
-               min="0"
-               step="1"
-               value="150"
-               placeholder="例如：150">
-
-        <span class="section-description" style="margin:0;">
-            留白代表不限預算
-        </span>
-    </div>
+<p class="description">留白代表不限預算</p>
 </section>
 
+<!-- ⑤ 推薦結果 -->
+<section>
+<h2>⑤ 今日美食推薦</h2>
 
-<!-- ==================================================
-     ⑤ 今日推薦
-================================================== -->
+<div class="result">
 
-<section class="section">
-    <h2>⑤ 今日美食推薦</h2>
+<div id="resultLocation" class="result-location">
+推薦地區：尚未抽選
+</div>
 
-    <div class="result">
-        <div class="result-location" id="resultLocation">
-            推薦地區：尚未抽選
-        </div>
+<div id="resultName" class="result-name">
+今天要吃什麼？
+</div>
 
-        <div class="result-name" id="resultName">
-            今天要吃什麼？
-        </div>
+<div id="resultCategory" class="result-info">
+餐點類型：尚未推薦
+</div>
 
-        <div class="result-info" id="resultCategory">
-            餐點類型：尚未推薦
-        </div>
+<div id="resultPrice" class="result-info">
+參考價格：--
+</div>
 
-        <div class="result-price" id="resultPrice">
-            參考價格：--
-        </div>
+<div id="resultDescription" class="result-info description">
+按下隨機推薦，讓命運幫你決定！
+</div>
 
-        <div class="result-description" id="resultDescription">
-            按下隨機推薦，讓命運幫你決定！
-        </div>
-    </div>
+</div>
 
-    <button class="btn btn-orange main-button"
-            type="button"
-            onclick="recommendFood()">
+<div class="main-buttons">
+    <button class="btn-orange" onclick="recommendFood()">
         🎲 隨機推薦
     </button>
 
-    <div class="button-row">
-        <button class="btn btn-green"
-                type="button"
-                onclick="searchGoogleMaps()">
-            📍 搜尋 Google 地圖
-        </button>
-
-        <button class="btn btn-light"
-                type="button"
-                onclick="addFavorite()">
-            ⭐ 收藏這道餐點
-        </button>
-    </div>
-</section>
-
-
-<!-- ==================================================
-     ⑥ 我的收藏
-================================================== -->
-
-<section class="section">
-    <h2>⑥ 我的收藏</h2>
-
-    <p class="section-description">
-        收藏資料只保存在目前使用的瀏覽器中。
-    </p>
-
-    <div id="favoriteList" class="favorite-list">
-    </div>
-</section>
-
-
-<!-- ==================================================
-     ⑦ 重置
-================================================== -->
-
-<section class="section">
-    <button class="btn btn-light"
-            type="button"
-            style="width:100%;"
-            onclick="resetDrawHistory()">
-        重置抽選紀錄
+    <button class="btn-green" onclick="searchGoogleMaps()">
+        📍 搜尋附近店家（Google 地圖）
     </button>
+
+    <button class="btn-light" onclick="addFavorite()">
+        ⭐ 收藏這道餐點
+    </button>
+</div>
 </section>
 
+<!-- ⑥ 收藏 -->
+<section>
+<h2>⑥ 我的收藏</h2>
+
+<div id="favoriteList" class="favorite-list"></div>
+
+<div class="button-group">
+    <button class="btn-danger" onclick="deleteFavorite()">
+        刪除選取收藏
+    </button>
+</div>
+</section>
+
+<!-- 重置 -->
+<section>
+<button class="btn-light" style="width:100%" onclick="resetDrawHistory()">
+重置抽選紀錄
+</button>
+</section>
 
 <footer>
-    袂甲啥｜高雄、屏東美食推薦<br>
-    價格為2025～2026年參考估價，實際價格依店家公告為準。<br>
-    本網站提供餐點類型推薦，不代表即時店家營業資訊。
+價格為2025～2026年參考估價，實際價格以店家公告為準。
 </footer>
 
 </div>
 
-
 <script>
 
-/* ==================================================
-   一、城市與行政區資料
-================================================== */
+// ============================================================
+// 一、城市及行政區
+// ============================================================
 
 const CITY_DISTRICTS = {
-
     "高雄市": [
         "三民區", "左營區", "鼓山區", "楠梓區", "鳳山區",
         "苓雅區", "前鎮區", "新興區", "前金區", "鹽埕區",
@@ -661,10 +435,9 @@ const CITY_DISTRICTS = {
 };
 
 
-/* ==================================================
-   二、完整餐點資料
-   共11種類型，每種類型10筆
-================================================== */
+// ============================================================
+// 二、餐點資料
+// ============================================================
 
 const FOOD_DATA = {
 
@@ -777,4 +550,609 @@ const FOOD_DATA = {
         ["鍋燒意麵",80,130,"鍋燒麵食"],
         ["麻醬麵",60,100,"濃郁麻醬麵"],
         ["乾麵",50,90,"台式乾麵"],
-        ["陽春麵",50
+        ["陽春麵",50,85,"簡單湯麵"],
+        ["滷味麵",70,130,"滷味搭配麵食"],
+        ["拉麵",130,220,"日式湯拉麵"],
+        ["義大利麵",120,200,"各式義大利麵"],
+        ["炒烏龍麵",90,150,"日式炒烏龍"],
+        ["酸辣粉",90,150,"酸辣風味粉麵"]
+    ],
+
+    "小吃": [
+        ["鹽酥雞",50,120,"台式鹽酥雞"],
+        ["滷味",50,150,"自由選擇食材"],
+        ["臭豆腐",60,100,"台灣經典小吃"],
+        ["蚵仔煎",70,110,"蚵仔搭配蛋與青菜"],
+        ["肉圓",45,80,"台式肉圓"],
+        ["大腸包小腸",55,90,"夜市經典小吃"],
+        ["蔥油餅",35,65,"香酥蔥油餅"],
+        ["雞排",75,110,"台式炸雞排"],
+        ["關東煮",50,120,"日式關東煮"],
+        ["米糕",40,75,"傳統米糕"]
+    ],
+
+    "夜市美食": [
+        ["蚵仔煎",70,110,"夜市經典料理"],
+        ["臭豆腐",60,100,"酥炸臭豆腐"],
+        ["地瓜球",30,60,"夜市人氣點心"],
+        ["雞排",75,110,"大份量炸雞排"],
+        ["章魚燒",60,100,"日式章魚燒"],
+        ["烤玉米",50,100,"醬烤玉米"],
+        ["大腸包小腸",55,90,"夜市人氣小吃"],
+        ["炭烤串燒",40,120,"各式串燒"],
+        ["炸魷魚",70,130,"酥炸魷魚"],
+        ["木瓜牛奶",50,85,"現打飲品"]
+    ]
+};
+
+
+// ============================================================
+// 三、整理餐點資料
+// ============================================================
+
+let ALL_FOODS = [];
+
+for (const [category, foods] of Object.entries(FOOD_DATA)) {
+    for (const food of foods) {
+        ALL_FOODS.push({
+            category: category,
+            name: food[0],
+            price_min: food[1],
+            price_max: food[2],
+            description: food[3]
+        });
+    }
+}
+
+
+// ============================================================
+// 四、收藏及抽選紀錄
+// ============================================================
+
+let favorites = JSON.parse(
+    localStorage.getItem("food_favorites") || "[]"
+);
+
+let drawnFoods = new Set();
+
+let currentFood = null;
+let currentLocation = "";
+
+function saveFavorites() {
+    localStorage.setItem(
+        "food_favorites",
+        JSON.stringify(favorites)
+    );
+}
+
+
+// ============================================================
+// 五、城市模式
+// ============================================================
+
+function getCityMode() {
+    return document.querySelector(
+        'input[name="cityMode"]:checked'
+    ).value;
+}
+
+function getSelectedCity() {
+    return document.querySelector(
+        'input[name="city"]:checked'
+    ).value;
+}
+
+document.querySelectorAll('input[name="cityMode"]').forEach(
+    radio => {
+        radio.addEventListener("change", updateCityMode);
+    }
+);
+
+document.querySelectorAll('input[name="city"]').forEach(
+    radio => {
+        radio.addEventListener("change", buildDistrictCheckboxes);
+    }
+);
+
+function updateCityMode() {
+
+    const mode = getCityMode();
+
+    const citySelect = document.getElementById("citySelect");
+    const districtDescription = document.getElementById(
+        "districtDescription"
+    );
+
+    if (mode === "manual") {
+
+        citySelect.style.opacity = "1";
+        citySelect.style.pointerEvents = "auto";
+
+        districtDescription.textContent =
+            "可複選行政區；不選或全選時，顯示為（全行政區）。";
+
+        buildDistrictCheckboxes();
+
+    } else {
+
+        citySelect.style.opacity = "0.4";
+        citySelect.style.pointerEvents = "none";
+
+        districtDescription.textContent =
+            "隨機城市模式：程式會隨機抽城市，並隨機抽出該城市的一個行政區。";
+    }
+}
+
+
+// ============================================================
+// 六、行政區
+// ============================================================
+
+function buildDistrictCheckboxes() {
+
+    const city = getSelectedCity();
+
+    const grid = document.getElementById("districtGrid");
+
+    grid.innerHTML = "";
+
+    CITY_DISTRICTS[city].forEach(district => {
+
+        const label = document.createElement("label");
+
+        label.innerHTML = `
+            <input type="checkbox" value="${district}">
+            ${district}
+        `;
+
+        grid.appendChild(label);
+    });
+}
+
+function selectAllDistricts() {
+
+    document.querySelectorAll(
+        "#districtGrid input"
+    ).forEach(cb => cb.checked = true);
+}
+
+function clearDistricts() {
+
+    document.querySelectorAll(
+        "#districtGrid input"
+    ).forEach(cb => cb.checked = false);
+}
+
+
+// ============================================================
+// 七、餐點類型
+// ============================================================
+
+function buildCategoryCheckboxes() {
+
+    const grid = document.getElementById("categoryGrid");
+
+    grid.innerHTML = "";
+
+    Object.keys(FOOD_DATA).forEach(category => {
+
+        const label = document.createElement("label");
+
+        label.innerHTML = `
+            <input type="checkbox" value="${category}" checked>
+            ${category}
+        `;
+
+        grid.appendChild(label);
+    });
+}
+
+function selectAllCategories() {
+
+    document.querySelectorAll(
+        "#categoryGrid input"
+    ).forEach(cb => cb.checked = true);
+}
+
+function clearCategories() {
+
+    document.querySelectorAll(
+        "#categoryGrid input"
+    ).forEach(cb => cb.checked = false);
+}
+
+
+// ============================================================
+// 八、選擇推薦地區
+// ============================================================
+
+function chooseLocation() {
+
+    // 隨機城市
+    if (getCityMode() === "random") {
+
+        const cities = Object.keys(CITY_DISTRICTS);
+
+        const city = cities[
+            Math.floor(Math.random() * cities.length)
+        ];
+
+        const district = CITY_DISTRICTS[city][
+            Math.floor(Math.random() * CITY_DISTRICTS[city].length)
+        ];
+
+        return city + district;
+    }
+
+    const city = getSelectedCity();
+
+    const allDistricts = CITY_DISTRICTS[city];
+
+    // 自選城市＋隨機行政區
+    if (document.getElementById("randomDistrict").checked) {
+
+        const district = allDistricts[
+            Math.floor(Math.random() * allDistricts.length)
+        ];
+
+        return city + district;
+    }
+
+    // 手動選擇行政區
+    const selectedDistricts = Array.from(
+        document.querySelectorAll("#districtGrid input:checked")
+    ).map(cb => cb.value);
+
+    // 沒選行政區
+    if (selectedDistricts.length === 0) {
+        return city + "(全行政區)";
+    }
+
+    // 全選
+    if (selectedDistricts.length === allDistricts.length) {
+        return city + "(全行政區)";
+    }
+
+    // 部分選擇
+    return city + selectedDistricts.join("、");
+}
+
+
+// ============================================================
+// 九、篩選餐點
+// ============================================================
+
+function getFilteredFoods() {
+
+    const selectedCategories = Array.from(
+        document.querySelectorAll("#categoryGrid input:checked")
+    ).map(cb => cb.value);
+
+    if (selectedCategories.length === 0) {
+
+        alert("請至少選擇一種餐點類型！");
+
+        return null;
+    }
+
+    const budgetText = document.getElementById("budget").value.trim();
+
+    let budget = null;
+
+    if (budgetText !== "") {
+
+        budget = Number(budgetText);
+
+        if (!Number.isInteger(budget) || budget < 0) {
+
+            alert("預算請輸入大於或等於 0 的整數！");
+
+            return null;
+        }
+    }
+
+    const filtered = ALL_FOODS.filter(food => {
+
+        if (!selectedCategories.includes(food.category)) {
+            return false;
+        }
+
+        if (budget !== null && food.price_max > budget) {
+            return false;
+        }
+
+        return true;
+    });
+
+    if (filtered.length === 0) {
+
+        alert(
+            "目前條件沒有符合的餐點。\n請提高預算或增加餐點類型。"
+        );
+
+        return null;
+    }
+
+    return filtered;
+}
+
+
+// ============================================================
+// 十、隨機推薦
+// ============================================================
+
+function recommendFood() {
+
+    const location = chooseLocation();
+
+    const filtered = getFilteredFoods();
+
+    if (filtered === null) {
+        return;
+    }
+
+    // 避免重複推薦
+    let remaining = filtered.filter(food => {
+
+        const key = food.category + "|" + food.name;
+
+        return !drawnFoods.has(key);
+    });
+
+    // 全部抽完重新開始
+    if (remaining.length === 0) {
+
+        drawnFoods.clear();
+
+        remaining = filtered.slice();
+
+        alert(
+            "符合條件的餐點已全部推薦過，將重新開始抽選！"
+        );
+    }
+
+    const selected = remaining[
+        Math.floor(Math.random() * remaining.length)
+    ];
+
+    drawnFoods.add(
+        selected.category + "|" + selected.name
+    );
+
+    currentFood = selected;
+    currentLocation = location;
+
+    document.getElementById("resultLocation").textContent =
+        "推薦地區：" + location;
+
+    document.getElementById("resultName").textContent =
+        selected.name;
+
+    document.getElementById("resultCategory").textContent =
+        "餐點類型：" + selected.category;
+
+    document.getElementById("resultPrice").textContent =
+        "參考價格：$" + selected.price_min +
+        "～$" + selected.price_max;
+
+    document.getElementById("resultDescription").textContent =
+        selected.description;
+}
+
+
+// ============================================================
+// 十一、Google 地圖搜尋
+// ============================================================
+
+function searchGoogleMaps() {
+
+    if (currentFood === null) {
+
+        alert("請先按下隨機推薦！");
+
+        return;
+    }
+
+    const query =
+        currentLocation + " " + currentFood.name + " 美食";
+
+    const url =
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(query);
+
+    window.open(url, "_blank");
+}
+
+
+// ============================================================
+// 十二、收藏功能
+// ============================================================
+
+function addFavorite() {
+
+    if (currentFood === null) {
+
+        alert("請先推薦餐點後再收藏！");
+
+        return;
+    }
+
+    const favorite = {
+
+        category: currentFood.category,
+        name: currentFood.name,
+        price_min: currentFood.price_min,
+        price_max: currentFood.price_max,
+        description: currentFood.description,
+        location: currentLocation
+    };
+
+    // 避免重複收藏
+    const exists = favorites.some(item => {
+
+        return item.name === favorite.name &&
+               item.location === favorite.location;
+    });
+
+    if (exists) {
+
+        alert("這個餐點與地區已經在收藏清單中！");
+
+        return;
+    }
+
+    favorites.push(favorite);
+
+    saveFavorites();
+
+    refreshFavorites();
+
+    alert("已收藏：" + favorite.name);
+}
+
+
+// ============================================================
+// 十三、顯示收藏清單
+// ============================================================
+
+function refreshFavorites() {
+
+    const list = document.getElementById("favoriteList");
+
+    list.innerHTML = "";
+
+    if (favorites.length === 0) {
+
+        list.innerHTML =
+            '<p class="description">目前尚無收藏餐點。</p>';
+
+        return;
+    }
+
+    favorites.forEach((item, index) => {
+
+        const div = document.createElement("div");
+
+        div.className = "favorite-item";
+
+        div.innerHTML = `
+            <div class="favorite-info">
+                <label>
+                    <input type="checkbox" class="favorite-check" value="${index}">
+                    <strong>${escapeHTML(item.name)}</strong>
+                </label>
+                <div class="description">
+                    ${escapeHTML(item.location || "未指定地區")}
+                    ｜${escapeHTML(item.category || "未分類")}
+                    ｜$${item.price_min}～$${item.price_max}
+                </div>
+            </div>
+
+            <div class="favorite-actions">
+                <button class="btn-light"
+                    onclick="searchFavorite(${index})">
+                    搜尋店家
+                </button>
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+
+// 避免顯示文字被當成HTML
+function escapeHTML(text) {
+
+    return String(text).replace(/[&<>"']/g, function(char) {
+
+        const map = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        };
+
+        return map[char];
+    });
+}
+
+
+// ============================================================
+// 十四、刪除收藏
+// ============================================================
+
+function deleteFavorite() {
+
+    const selected = Array.from(
+        document.querySelectorAll(".favorite-check:checked")
+    ).map(cb => Number(cb.value));
+
+    if (selected.length === 0) {
+
+        alert("請先選擇要刪除的收藏！");
+
+        return;
+    }
+
+    // 由後往前刪除，避免索引位移
+    selected.sort((a, b) => b - a);
+
+    selected.forEach(index => {
+        favorites.splice(index, 1);
+    });
+
+    saveFavorites();
+
+    refreshFavorites();
+}
+
+
+// ============================================================
+// 十五、搜尋收藏
+// ============================================================
+
+function searchFavorite(index) {
+
+    const item = favorites[index];
+
+    const query =
+        item.location + " " + item.name + " 美食";
+
+    const url =
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(query);
+
+    window.open(url, "_blank");
+}
+
+
+// ============================================================
+// 十六、重置抽選紀錄
+// ============================================================
+
+function resetDrawHistory() {
+
+    drawnFoods.clear();
+
+    alert("已清除抽選紀錄，可以重新抽選所有餐點！");
+}
+
+
+// ============================================================
+// 十七、初始化
+// ============================================================
+
+buildDistrictCheckboxes();
+
+buildCategoryCheckboxes();
+
+refreshFavorites();
+
+updateCityMode();
+
+</script>
+
+</body>
+</html>
